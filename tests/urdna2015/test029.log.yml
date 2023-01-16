@@ -1,0 +1,1519 @@
+ca:
+  log point: Entering the canonicalization function (4.5.3).
+  ca.2:
+    log point: Extract quads for each bnode (4.5.3 (2)).
+    Bnode to quads:
+      e0:
+        - _:e2 <http://example.org/vocab#next> _:e0 .
+        - _:e0 <http://example.org/vocab#next> _:e1 .
+        - _:e0 <http://example.org/vocab#prev> _:e2 .
+        - _:e1 <http://example.org/vocab#prev> _:e0 .
+      e1:
+        - _:e2 <http://example.org/vocab#prev> _:e1 .
+        - _:e0 <http://example.org/vocab#next> _:e1 .
+        - _:e1 <http://example.org/vocab#next> _:e2 .
+        - _:e1 <http://example.org/vocab#prev> _:e0 .
+      e2:
+        - _:e2 <http://example.org/vocab#next> _:e0 .
+        - _:e2 <http://example.org/vocab#prev> _:e1 .
+        - _:e0 <http://example.org/vocab#prev> _:e2 .
+        - _:e1 <http://example.org/vocab#next> _:e2 .
+  ca.3:
+    log point: Calculated first degree hashes (4.5.3 (3)).
+    with:
+      - identifier: e0
+        h1dq:
+          log point: Hash First Degree Quads function (4.7.3).
+          nquads:
+            - _:z <http://example.org/vocab#next> _:a .
+            - _:a <http://example.org/vocab#next> _:z .
+            - _:a <http://example.org/vocab#prev> _:z .
+            - _:z <http://example.org/vocab#prev> _:a .
+          hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+      - identifier: e1
+        h1dq:
+          log point: Hash First Degree Quads function (4.7.3).
+          nquads:
+            - _:z <http://example.org/vocab#prev> _:a .
+            - _:z <http://example.org/vocab#next> _:a .
+            - _:a <http://example.org/vocab#next> _:z .
+            - _:a <http://example.org/vocab#prev> _:z .
+          hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+      - identifier: e2
+        h1dq:
+          log point: Hash First Degree Quads function (4.7.3).
+          nquads:
+            - _:a <http://example.org/vocab#next> _:z .
+            - _:a <http://example.org/vocab#prev> _:z .
+            - _:z <http://example.org/vocab#prev> _:a .
+            - _:z <http://example.org/vocab#next> _:a .
+          hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+  ca.4:
+    log point: Create canonical replacements for hashes mapping to a single node (4.5.3 (4)).
+    with:
+  ca.5:
+    log point: Calculate hashes for identifiers with shared hashes (4.5.3 (5)).
+    with:
+      - hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+        identifier list: ["e0", "e1", "e2"]
+        ca.5.2:
+          log point: Calculate hashes for identifiers with shared hashes (4.5.3 (5.2)).
+          with:
+            - identifier: e0
+              hndq:
+                log point: Hash N-Degree Quads function (4.9.3).
+                identifier: e0
+                issuer: {e0: b0}
+                hndq.2:
+                  log point: Quads for identifier (4.9.3 (2)).
+                  quads:
+                    - _:e2 <http://example.org/vocab#next> _:e0 .
+                    - _:e0 <http://example.org/vocab#next> _:e1 .
+                    - _:e0 <http://example.org/vocab#prev> _:e2 .
+                    - _:e1 <http://example.org/vocab#prev> _:e0 .
+                hndq.3:
+                  log point: Hash N-Degree Quads function (4.9.3 (3)).
+                  with:
+                    - quad: _:e2 <http://example.org/vocab#next> _:e0 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: s
+                          related: e2
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "s<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                    - quad: _:e0 <http://example.org/vocab#next> _:e1 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: o
+                          related: e1
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "o<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e
+                    - quad: _:e0 <http://example.org/vocab#prev> _:e2 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: o
+                          related: e2
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "o<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                    - quad: _:e1 <http://example.org/vocab#prev> _:e0 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: s
+                          related: e1
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "s<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4
+                  Hash to bnodes:
+                    1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d:
+                      - e2
+                    20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e:
+                      - e1
+                    2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4:
+                      - e1
+                    56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca:
+                      - e2
+                hndq.5:
+                  log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                  with:
+                    - related hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                      data to hash: ""
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e2"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e2
+                                  path: "_:b1"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: ["e2"]
+                              path: ""
+                              with:
+                                - related: e2
+                                  hndq:
+                                    log point: Hash N-Degree Quads function (4.9.3).
+                                    identifier: e2
+                                    issuer: {e0: b0, e2: b1}
+                                    hndq.2:
+                                      log point: Quads for identifier (4.9.3 (2)).
+                                      quads:
+                                        - _:e2 <http://example.org/vocab#next> _:e0 .
+                                        - _:e2 <http://example.org/vocab#prev> _:e1 .
+                                        - _:e0 <http://example.org/vocab#prev> _:e2 .
+                                        - _:e1 <http://example.org/vocab#next> _:e2 .
+                                    hndq.3:
+                                      log point: Hash N-Degree Quads function (4.9.3 (3)).
+                                      with:
+                                        - quad: _:e2 <http://example.org/vocab#next> _:e0 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: o
+                                              related: e0
+                                              input: "o<http://example.org/vocab#next>_:b0"
+                                              hash: 9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f
+                                        - quad: _:e2 <http://example.org/vocab#prev> _:e1 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: o
+                                              related: e1
+                                              h1dq:
+                                                log point: Hash First Degree Quads function (4.7.3).
+                                                nquads:
+                                                  - _:z <http://example.org/vocab#prev> _:a .
+                                                  - _:z <http://example.org/vocab#next> _:a .
+                                                  - _:a <http://example.org/vocab#next> _:z .
+                                                  - _:a <http://example.org/vocab#prev> _:z .
+                                                hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                                              input: "o<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                                              hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                                        - quad: _:e0 <http://example.org/vocab#prev> _:e2 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: s
+                                              related: e0
+                                              input: "s<http://example.org/vocab#prev>_:b0"
+                                              hash: 2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef
+                                        - quad: _:e1 <http://example.org/vocab#next> _:e2 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: s
+                                              related: e1
+                                              h1dq:
+                                                log point: Hash First Degree Quads function (4.7.3).
+                                                nquads:
+                                                  - _:z <http://example.org/vocab#prev> _:a .
+                                                  - _:z <http://example.org/vocab#next> _:a .
+                                                  - _:a <http://example.org/vocab#next> _:z .
+                                                  - _:a <http://example.org/vocab#prev> _:z .
+                                                hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                                              input: "s<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                                              hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                                      Hash to bnodes:
+                                        1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d:
+                                          - e1
+                                        2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef:
+                                          - e0
+                                        56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca:
+                                          - e1
+                                        9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f:
+                                          - e0
+                                    hndq.5:
+                                      log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                                      with:
+                                        - related hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                                          data to hash: ""
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e1"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e1
+                                                      path: "_:b2"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: ["e1"]
+                                                  path: ""
+                                                  with:
+                                                    - related: e1
+                                                      hndq:
+                                                        log point: Hash N-Degree Quads function (4.9.3).
+                                                        identifier: e1
+                                                        issuer: {e0: b0, e2: b1, e1: b2}
+                                                        hndq.2:
+                                                          log point: Quads for identifier (4.9.3 (2)).
+                                                          quads:
+                                                            - _:e2 <http://example.org/vocab#prev> _:e1 .
+                                                            - _:e0 <http://example.org/vocab#next> _:e1 .
+                                                            - _:e1 <http://example.org/vocab#next> _:e2 .
+                                                            - _:e1 <http://example.org/vocab#prev> _:e0 .
+                                                        hndq.3:
+                                                          log point: Hash N-Degree Quads function (4.9.3 (3)).
+                                                          with:
+                                                            - quad: _:e2 <http://example.org/vocab#prev> _:e1 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: s
+                                                                  related: e2
+                                                                  input: "s<http://example.org/vocab#prev>_:b1"
+                                                                  hash: 0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550
+                                                            - quad: _:e0 <http://example.org/vocab#next> _:e1 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: s
+                                                                  related: e0
+                                                                  input: "s<http://example.org/vocab#next>_:b0"
+                                                                  hash: fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587
+                                                            - quad: _:e1 <http://example.org/vocab#next> _:e2 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: o
+                                                                  related: e2
+                                                                  input: "o<http://example.org/vocab#next>_:b1"
+                                                                  hash: 041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0
+                                                            - quad: _:e1 <http://example.org/vocab#prev> _:e0 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: o
+                                                                  related: e0
+                                                                  input: "o<http://example.org/vocab#prev>_:b0"
+                                                                  hash: ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177
+                                                          Hash to bnodes:
+                                                            041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0:
+                                                              - e2
+                                                            0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550:
+                                                              - e2
+                                                            ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177:
+                                                              - e0
+                                                            fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587:
+                                                              - e0
+                                                        hndq.5:
+                                                          log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                                                          with:
+                                                            - related hash: 041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0
+                                                              data to hash: ""
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e2"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e2
+                                                                          path: "_:b1"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b1"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b1"
+                                                            - related hash: 0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b1"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e2"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e2
+                                                                          path: "_:b1"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b1"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1"
+                                                            - related hash: ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e0"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e0
+                                                                          path: "_:b0"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b0"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0"
+                                                            - related hash: fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e0"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e0
+                                                                          path: "_:b0"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b0"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587_:b0"
+                                                        hndq.6:
+                                                          log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                                                          hash: 737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7
+                                                          issuer: {e0: b0, e2: b1, e1: b2}
+                                                      hndq.5.4.5.4:
+                                                        log point: Hash N-Degree Quads function (4.9.3 (5.4.5.4)), combine result of recursion.
+                                                        path: "_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                                        issuer copy: {e0: b0, e2: b1, e1: b2}
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                        - related hash: 2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e0"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e0
+                                                      path: "_:b0"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b0"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b0"
+                                        - related hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b0"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e1"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e1
+                                                      path: "_:b2"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b2"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b2"
+                                        - related hash: 9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b2"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e0"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e0
+                                                      path: "_:b0"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b0"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b29e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f_:b0"
+                                    hndq.6:
+                                      log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                                      hash: 819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2
+                                      issuer: {e0: b0, e2: b1, e1: b2}
+                                  hndq.5.4.5.4:
+                                    log point: Hash N-Degree Quads function (4.9.3 (5.4.5.4)), combine result of recursion.
+                                    path: "_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                                    issuer copy: {e0: b0, e2: b1, e1: b2}
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                    - related hash: 20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e1"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e1
+                                  path: "_:b2"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b2"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b2"
+                    - related hash: 2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b2"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e1"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e1
+                                  path: "_:b2"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b2"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b2"
+                    - related hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b2"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e2"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e2
+                                  path: "_:b1"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b1"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b256d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b1"
+                hndq.6:
+                  log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                  hash: 0ca9b23fb0c2d20934dc86d232e8d2b8a9c4ddc27722becb8902307b16a6d2ac
+                  issuer: {e0: b0, e2: b1, e1: b2}
+            - identifier: e1
+              hndq:
+                log point: Hash N-Degree Quads function (4.9.3).
+                identifier: e1
+                issuer: {e1: b0}
+                hndq.2:
+                  log point: Quads for identifier (4.9.3 (2)).
+                  quads:
+                    - _:e2 <http://example.org/vocab#prev> _:e1 .
+                    - _:e0 <http://example.org/vocab#next> _:e1 .
+                    - _:e1 <http://example.org/vocab#next> _:e2 .
+                    - _:e1 <http://example.org/vocab#prev> _:e0 .
+                hndq.3:
+                  log point: Hash N-Degree Quads function (4.9.3 (3)).
+                  with:
+                    - quad: _:e2 <http://example.org/vocab#prev> _:e1 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: s
+                          related: e2
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "s<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4
+                    - quad: _:e0 <http://example.org/vocab#next> _:e1 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: s
+                          related: e0
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "s<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                    - quad: _:e1 <http://example.org/vocab#next> _:e2 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: o
+                          related: e2
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "o<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e
+                    - quad: _:e1 <http://example.org/vocab#prev> _:e0 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: o
+                          related: e0
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "o<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                  Hash to bnodes:
+                    1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d:
+                      - e0
+                    20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e:
+                      - e2
+                    2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4:
+                      - e2
+                    56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca:
+                      - e0
+                hndq.5:
+                  log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                  with:
+                    - related hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                      data to hash: ""
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e0"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e0
+                                  path: "_:b1"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: ["e0"]
+                              path: ""
+                              with:
+                                - related: e0
+                                  hndq:
+                                    log point: Hash N-Degree Quads function (4.9.3).
+                                    identifier: e0
+                                    issuer: {e1: b0, e0: b1}
+                                    hndq.2:
+                                      log point: Quads for identifier (4.9.3 (2)).
+                                      quads:
+                                        - _:e2 <http://example.org/vocab#next> _:e0 .
+                                        - _:e0 <http://example.org/vocab#next> _:e1 .
+                                        - _:e0 <http://example.org/vocab#prev> _:e2 .
+                                        - _:e1 <http://example.org/vocab#prev> _:e0 .
+                                    hndq.3:
+                                      log point: Hash N-Degree Quads function (4.9.3 (3)).
+                                      with:
+                                        - quad: _:e2 <http://example.org/vocab#next> _:e0 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: s
+                                              related: e2
+                                              h1dq:
+                                                log point: Hash First Degree Quads function (4.7.3).
+                                                nquads:
+                                                  - _:a <http://example.org/vocab#next> _:z .
+                                                  - _:a <http://example.org/vocab#prev> _:z .
+                                                  - _:z <http://example.org/vocab#prev> _:a .
+                                                  - _:z <http://example.org/vocab#next> _:a .
+                                                hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                                              input: "s<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                                              hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                                        - quad: _:e0 <http://example.org/vocab#next> _:e1 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: o
+                                              related: e1
+                                              input: "o<http://example.org/vocab#next>_:b0"
+                                              hash: 9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f
+                                        - quad: _:e0 <http://example.org/vocab#prev> _:e2 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: o
+                                              related: e2
+                                              h1dq:
+                                                log point: Hash First Degree Quads function (4.7.3).
+                                                nquads:
+                                                  - _:a <http://example.org/vocab#next> _:z .
+                                                  - _:a <http://example.org/vocab#prev> _:z .
+                                                  - _:z <http://example.org/vocab#prev> _:a .
+                                                  - _:z <http://example.org/vocab#next> _:a .
+                                                hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                                              input: "o<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                                              hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                                        - quad: _:e1 <http://example.org/vocab#prev> _:e0 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: s
+                                              related: e1
+                                              input: "s<http://example.org/vocab#prev>_:b0"
+                                              hash: 2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef
+                                      Hash to bnodes:
+                                        1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d:
+                                          - e2
+                                        2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef:
+                                          - e1
+                                        56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca:
+                                          - e2
+                                        9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f:
+                                          - e1
+                                    hndq.5:
+                                      log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                                      with:
+                                        - related hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                                          data to hash: ""
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e2"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e2
+                                                      path: "_:b2"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: ["e2"]
+                                                  path: ""
+                                                  with:
+                                                    - related: e2
+                                                      hndq:
+                                                        log point: Hash N-Degree Quads function (4.9.3).
+                                                        identifier: e2
+                                                        issuer: {e1: b0, e0: b1, e2: b2}
+                                                        hndq.2:
+                                                          log point: Quads for identifier (4.9.3 (2)).
+                                                          quads:
+                                                            - _:e2 <http://example.org/vocab#next> _:e0 .
+                                                            - _:e2 <http://example.org/vocab#prev> _:e1 .
+                                                            - _:e0 <http://example.org/vocab#prev> _:e2 .
+                                                            - _:e1 <http://example.org/vocab#next> _:e2 .
+                                                        hndq.3:
+                                                          log point: Hash N-Degree Quads function (4.9.3 (3)).
+                                                          with:
+                                                            - quad: _:e2 <http://example.org/vocab#next> _:e0 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: o
+                                                                  related: e0
+                                                                  input: "o<http://example.org/vocab#next>_:b1"
+                                                                  hash: 041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0
+                                                            - quad: _:e2 <http://example.org/vocab#prev> _:e1 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: o
+                                                                  related: e1
+                                                                  input: "o<http://example.org/vocab#prev>_:b0"
+                                                                  hash: ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177
+                                                            - quad: _:e0 <http://example.org/vocab#prev> _:e2 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: s
+                                                                  related: e0
+                                                                  input: "s<http://example.org/vocab#prev>_:b1"
+                                                                  hash: 0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550
+                                                            - quad: _:e1 <http://example.org/vocab#next> _:e2 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: s
+                                                                  related: e1
+                                                                  input: "s<http://example.org/vocab#next>_:b0"
+                                                                  hash: fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587
+                                                          Hash to bnodes:
+                                                            041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0:
+                                                              - e0
+                                                            0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550:
+                                                              - e0
+                                                            ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177:
+                                                              - e1
+                                                            fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587:
+                                                              - e1
+                                                        hndq.5:
+                                                          log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                                                          with:
+                                                            - related hash: 041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0
+                                                              data to hash: ""
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e0"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e0
+                                                                          path: "_:b1"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b1"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b1"
+                                                            - related hash: 0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b1"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e0"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e0
+                                                                          path: "_:b1"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b1"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1"
+                                                            - related hash: ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e1"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e1
+                                                                          path: "_:b0"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b0"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0"
+                                                            - related hash: fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e1"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e1
+                                                                          path: "_:b0"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b0"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587_:b0"
+                                                        hndq.6:
+                                                          log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                                                          hash: 737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7
+                                                          issuer: {e1: b0, e0: b1, e2: b2}
+                                                      hndq.5.4.5.4:
+                                                        log point: Hash N-Degree Quads function (4.9.3 (5.4.5.4)), combine result of recursion.
+                                                        path: "_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                                        issuer copy: {e1: b0, e0: b1, e2: b2}
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                        - related hash: 2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e1"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e1
+                                                      path: "_:b0"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b0"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b0"
+                                        - related hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b0"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e2"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e2
+                                                      path: "_:b2"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b2"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b2"
+                                        - related hash: 9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b2"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e1"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e1
+                                                      path: "_:b0"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b0"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b29e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f_:b0"
+                                    hndq.6:
+                                      log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                                      hash: 819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2
+                                      issuer: {e1: b0, e0: b1, e2: b2}
+                                  hndq.5.4.5.4:
+                                    log point: Hash N-Degree Quads function (4.9.3 (5.4.5.4)), combine result of recursion.
+                                    path: "_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                                    issuer copy: {e1: b0, e0: b1, e2: b2}
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                    - related hash: 20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e2"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e2
+                                  path: "_:b2"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b2"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b2"
+                    - related hash: 2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b2"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e2"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e2
+                                  path: "_:b2"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b2"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b2"
+                    - related hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b2"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e0"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e0
+                                  path: "_:b1"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b1"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b256d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b1"
+                hndq.6:
+                  log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                  hash: 0ca9b23fb0c2d20934dc86d232e8d2b8a9c4ddc27722becb8902307b16a6d2ac
+                  issuer: {e1: b0, e0: b1, e2: b2}
+            - identifier: e2
+              hndq:
+                log point: Hash N-Degree Quads function (4.9.3).
+                identifier: e2
+                issuer: {e2: b0}
+                hndq.2:
+                  log point: Quads for identifier (4.9.3 (2)).
+                  quads:
+                    - _:e2 <http://example.org/vocab#next> _:e0 .
+                    - _:e2 <http://example.org/vocab#prev> _:e1 .
+                    - _:e0 <http://example.org/vocab#prev> _:e2 .
+                    - _:e1 <http://example.org/vocab#next> _:e2 .
+                hndq.3:
+                  log point: Hash N-Degree Quads function (4.9.3 (3)).
+                  with:
+                    - quad: _:e2 <http://example.org/vocab#next> _:e0 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: o
+                          related: e0
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "o<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e
+                    - quad: _:e2 <http://example.org/vocab#prev> _:e1 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: o
+                          related: e1
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "o<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                    - quad: _:e0 <http://example.org/vocab#prev> _:e2 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: s
+                          related: e0
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                              - _:z <http://example.org/vocab#prev> _:a .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "s<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4
+                    - quad: _:e1 <http://example.org/vocab#next> _:e2 .
+                      hndq.3.1:
+                        log point: Hash related bnode component (4.9.3 (3.1)).
+                        with:
+                        - position: s
+                          related: e1
+                          h1dq:
+                            log point: Hash First Degree Quads function (4.7.3).
+                            nquads:
+                              - _:z <http://example.org/vocab#prev> _:a .
+                              - _:z <http://example.org/vocab#next> _:a .
+                              - _:a <http://example.org/vocab#next> _:z .
+                              - _:a <http://example.org/vocab#prev> _:z .
+                            hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                          input: "s<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                          hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                  Hash to bnodes:
+                    1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d:
+                      - e1
+                    20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e:
+                      - e0
+                    2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4:
+                      - e0
+                    56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca:
+                      - e1
+                hndq.5:
+                  log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                  with:
+                    - related hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                      data to hash: ""
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e1"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e1
+                                  path: "_:b1"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: ["e1"]
+                              path: ""
+                              with:
+                                - related: e1
+                                  hndq:
+                                    log point: Hash N-Degree Quads function (4.9.3).
+                                    identifier: e1
+                                    issuer: {e2: b0, e1: b1}
+                                    hndq.2:
+                                      log point: Quads for identifier (4.9.3 (2)).
+                                      quads:
+                                        - _:e2 <http://example.org/vocab#prev> _:e1 .
+                                        - _:e0 <http://example.org/vocab#next> _:e1 .
+                                        - _:e1 <http://example.org/vocab#next> _:e2 .
+                                        - _:e1 <http://example.org/vocab#prev> _:e0 .
+                                    hndq.3:
+                                      log point: Hash N-Degree Quads function (4.9.3 (3)).
+                                      with:
+                                        - quad: _:e2 <http://example.org/vocab#prev> _:e1 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: s
+                                              related: e2
+                                              input: "s<http://example.org/vocab#prev>_:b0"
+                                              hash: 2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef
+                                        - quad: _:e0 <http://example.org/vocab#next> _:e1 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: s
+                                              related: e0
+                                              h1dq:
+                                                log point: Hash First Degree Quads function (4.7.3).
+                                                nquads:
+                                                  - _:z <http://example.org/vocab#next> _:a .
+                                                  - _:a <http://example.org/vocab#next> _:z .
+                                                  - _:a <http://example.org/vocab#prev> _:z .
+                                                  - _:z <http://example.org/vocab#prev> _:a .
+                                                hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                                              input: "s<http://example.org/vocab#next>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                                              hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                                        - quad: _:e1 <http://example.org/vocab#next> _:e2 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: o
+                                              related: e2
+                                              input: "o<http://example.org/vocab#next>_:b0"
+                                              hash: 9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f
+                                        - quad: _:e1 <http://example.org/vocab#prev> _:e0 .
+                                          hndq.3.1:
+                                            log point: Hash related bnode component (4.9.3 (3.1)).
+                                            with:
+                                            - position: o
+                                              related: e0
+                                              h1dq:
+                                                log point: Hash First Degree Quads function (4.7.3).
+                                                nquads:
+                                                  - _:z <http://example.org/vocab#next> _:a .
+                                                  - _:a <http://example.org/vocab#next> _:z .
+                                                  - _:a <http://example.org/vocab#prev> _:z .
+                                                  - _:z <http://example.org/vocab#prev> _:a .
+                                                hash: 60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b
+                                              input: "o<http://example.org/vocab#prev>60dc8fc7b5481014b6ea38efb05455676d1e93e19b99119ab294941dacc16b3b"
+                                              hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                                      Hash to bnodes:
+                                        1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d:
+                                          - e0
+                                        2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef:
+                                          - e2
+                                        56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca:
+                                          - e0
+                                        9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f:
+                                          - e2
+                                    hndq.5:
+                                      log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                                      with:
+                                        - related hash: 1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d
+                                          data to hash: ""
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e0"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e0
+                                                      path: "_:b2"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: ["e0"]
+                                                  path: ""
+                                                  with:
+                                                    - related: e0
+                                                      hndq:
+                                                        log point: Hash N-Degree Quads function (4.9.3).
+                                                        identifier: e0
+                                                        issuer: {e2: b0, e1: b1, e0: b2}
+                                                        hndq.2:
+                                                          log point: Quads for identifier (4.9.3 (2)).
+                                                          quads:
+                                                            - _:e2 <http://example.org/vocab#next> _:e0 .
+                                                            - _:e0 <http://example.org/vocab#next> _:e1 .
+                                                            - _:e0 <http://example.org/vocab#prev> _:e2 .
+                                                            - _:e1 <http://example.org/vocab#prev> _:e0 .
+                                                        hndq.3:
+                                                          log point: Hash N-Degree Quads function (4.9.3 (3)).
+                                                          with:
+                                                            - quad: _:e2 <http://example.org/vocab#next> _:e0 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: s
+                                                                  related: e2
+                                                                  input: "s<http://example.org/vocab#next>_:b0"
+                                                                  hash: fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587
+                                                            - quad: _:e0 <http://example.org/vocab#next> _:e1 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: o
+                                                                  related: e1
+                                                                  input: "o<http://example.org/vocab#next>_:b1"
+                                                                  hash: 041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0
+                                                            - quad: _:e0 <http://example.org/vocab#prev> _:e2 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: o
+                                                                  related: e2
+                                                                  input: "o<http://example.org/vocab#prev>_:b0"
+                                                                  hash: ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177
+                                                            - quad: _:e1 <http://example.org/vocab#prev> _:e0 .
+                                                              hndq.3.1:
+                                                                log point: Hash related bnode component (4.9.3 (3.1)).
+                                                                with:
+                                                                - position: s
+                                                                  related: e1
+                                                                  input: "s<http://example.org/vocab#prev>_:b1"
+                                                                  hash: 0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550
+                                                          Hash to bnodes:
+                                                            041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0:
+                                                              - e1
+                                                            0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550:
+                                                              - e1
+                                                            ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177:
+                                                              - e2
+                                                            fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587:
+                                                              - e2
+                                                        hndq.5:
+                                                          log point: Hash N-Degree Quads function (4.9.3 (5)), entering loop.
+                                                          with:
+                                                            - related hash: 041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0
+                                                              data to hash: ""
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e1"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e1
+                                                                          path: "_:b1"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b1"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b1"
+                                                            - related hash: 0793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b1"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e1"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e1
+                                                                          path: "_:b1"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b1"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1"
+                                                            - related hash: ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e2"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e2
+                                                                          path: "_:b0"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b0"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0"
+                                                            - related hash: fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587
+                                                              data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0"
+                                                              hndq.5.4:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                                                with:
+                                                                  - perm: ["e2"]
+                                                                    hndq.5.4.4:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                                      with:
+                                                                        - related: e2
+                                                                          path: "_:b0"
+                                                                    hndq.5.4.5:
+                                                                      log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                                      recursion list: []
+                                                                      path: ""
+                                                              hndq.5.5:
+                                                                log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                                                chosen path: "_:b0"
+                                                                data to hash: "041a949f4f0ed5dbedccff0a01ed5b78a0ef499df89ce0af3e784ed8240e14f0_:b10793c26ba806e151c40f9bb67df6223131a845a2ba2947cacf7e03c31812b550_:b1ee5c2a18a94cc31daa5c15313e5c824083ff5a9215ab296634dd849b787a8177_:b0fedd7e23f27219a0bfe4c5dd88920ff3c0bb0b2df2d15b956e5a4754cbcc8587_:b0"
+                                                        hndq.6:
+                                                          log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                                                          hash: 737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7
+                                                          issuer: {e2: b0, e1: b1, e0: b2}
+                                                      hndq.5.4.5.4:
+                                                        log point: Hash N-Degree Quads function (4.9.3 (5.4.5.4)), combine result of recursion.
+                                                        path: "_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                                        issuer copy: {e2: b0, e1: b1, e0: b2}
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                        - related hash: 2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e2"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e2
+                                                      path: "_:b0"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b0"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b0"
+                                        - related hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b0"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e0"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e0
+                                                      path: "_:b2"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b2"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b2"
+                                        - related hash: 9e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f
+                                          data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b2"
+                                          hndq.5.4:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                                            with:
+                                              - perm: ["e2"]
+                                                hndq.5.4.4:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                                                  with:
+                                                    - related: e2
+                                                      path: "_:b0"
+                                                hndq.5.4.5:
+                                                  log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                                                  recursion list: []
+                                                  path: ""
+                                          hndq.5.5:
+                                            log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                                            chosen path: "_:b0"
+                                            data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b2_:b2<737f3b9306b8def0ae7a720d464f68ffce5bf0efb9a38031f4bd1872b5ded7d7>2271d4a38ab18871a59367113128e490261466f10fec31d3e9654531f7c08fef_:b056d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b29e8ddf2abce731d9bb3b56caa83f1d2c4d76f7c649b8c286b1b372830d5d706f_:b0"
+                                    hndq.6:
+                                      log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                                      hash: 819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2
+                                      issuer: {e2: b0, e1: b1, e0: b2}
+                                  hndq.5.4.5.4:
+                                    log point: Hash N-Degree Quads function (4.9.3 (5.4.5.4)), combine result of recursion.
+                                    path: "_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                                    issuer copy: {e2: b0, e1: b1, e0: b2}
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                    - related hash: 20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e0"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e0
+                                  path: "_:b2"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b2"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b2"
+                    - related hash: 2a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b2"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e0"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e0
+                                  path: "_:b2"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b2"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b2"
+                    - related hash: 56d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca
+                      data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b2"
+                      hndq.5.4:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.4)), entering loop.
+                        with:
+                          - perm: ["e1"]
+                            hndq.5.4.4:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.4)), entering loop.
+                              with:
+                                - related: e1
+                                  path: "_:b1"
+                            hndq.5.4.5:
+                              log point: Hash N-Degree Quads function (4.9.3 (5.4.5)), before possible recursion.
+                              recursion list: []
+                              path: ""
+                      hndq.5.5:
+                        log point: Hash N-Degree Quads function (4.9.3 (5.5). End of current loop with Hn hashes.
+                        chosen path: "_:b1"
+                        data to hash: "1e4e55ba02b8b0b527c32e2343fbcfee2e2bd9c1972c67cc01f85fabde7bc42d_:b1_:b1<819eab819062aeedce426cdea79197a7fcedc9188670b2741fbc0a6894cea8b2>20bb08971220a5382a9a06ba2977c5fb859e63192e0b2015a378af89e453f25e_:b22a5dd448b9467a08479008a5350829441868b7f913343cd500fe8619e047cff4_:b256d0774755aaf8d9cf4da8af3728e5589f94e5cd7d9aee86f0c5a7bc1d71c7ca_:b1"
+                hndq.6:
+                  log point: Leaving Hash N-Degree Quads function (4.9.3 (6)).
+                  hash: 0ca9b23fb0c2d20934dc86d232e8d2b8a9c4ddc27722becb8902307b16a6d2ac
+                  issuer: {e2: b0, e1: b1, e0: b2}
+        ca.5.3:
+          log point: Canonical identifiers for temporary identifiers (4.5.3 (5.3)).
+          with:
+            - result: 0ca9b23fb0c2d20934dc86d232e8d2b8a9c4ddc27722becb8902307b16a6d2ac
+              issuer: {e0: b0, e2: b1, e1: b2}
+              ca.5.3.1:
+                - existing identifier: e0
+                  cid: c14n0
+                - existing identifier: e2
+                  cid: c14n1
+                - existing identifier: e1
+                  cid: c14n2
+            - result: 0ca9b23fb0c2d20934dc86d232e8d2b8a9c4ddc27722becb8902307b16a6d2ac
+              issuer: {e1: b0, e0: b1, e2: b2}
+              ca.5.3.1:
+                - existing identifier: e1
+                  cid: c14n2
+                - existing identifier: e0
+                  cid: c14n0
+                - existing identifier: e2
+                  cid: c14n1
+            - result: 0ca9b23fb0c2d20934dc86d232e8d2b8a9c4ddc27722becb8902307b16a6d2ac
+              issuer: {e2: b0, e1: b1, e0: b2}
+              ca.5.3.1:
+                - existing identifier: e2
+                  cid: c14n1
+                - existing identifier: e1
+                  cid: c14n2
+                - existing identifier: e0
+                  cid: c14n0
+  ca.6:
+    log point: Replace original with canonical labels (4.5.3 (6)).
+    canonical issuer: {e0: c14n0, e2: c14n1, e1: c14n2}
